@@ -3,22 +3,23 @@ var width = canvas.offsetWidth,
     height = canvas.offsetHeight;
 
 var colors = [
-    new THREE.Color(0xac1122),
-    new THREE.Color(0x96789f),
-    new THREE.Color(0x535353)];
+    new THREE.Color(0xF06543),
+    new THREE.Color(0xEAD112),
+  ];
 
 var renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     antialias: true
 });
+
 renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1);
 renderer.setSize(width, height);
-renderer.setClearColor(0x000000);
+renderer.setClearColor(0xE0DFD5);
 
 var scene = new THREE.Scene();
 
 var raycaster = new THREE.Raycaster();
-raycaster.params.Points.threshold = 6;
+raycaster.params.Points.threshold = 20;
 
 
 var camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 2000);
@@ -31,7 +32,7 @@ scene.add(galaxy);
 var loader = new THREE.TextureLoader();
 loader.crossOrigin = "";
 var dotTexture = loader.load("img/dotTexture.png");
-var dotsAmount = 3000;
+var dotsAmount = 4000;
 var dotsGeometry = new THREE.Geometry();
 var positions = new Float32Array(dotsAmount * 3);
 
@@ -130,7 +131,7 @@ function render(a) {
     var i;
     dotsGeometry.verticesNeedUpdate = true;
     segmentsGeom.verticesNeedUpdate = true;
-    
+
     raycaster.setFromCamera( mouse, camera );
     var intersections = raycaster.intersectObjects([wrap]);
     hovered = [];
